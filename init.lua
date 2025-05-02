@@ -181,7 +181,8 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 -- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
 -- Map exit edit Mode to <Esc>
-vim.keymap.set('i', 'jj', '<Esc>')
+vim.keymap.set('i', 'jk', '<Esc>')
+vim.keymap.set('i', 'kj', '<Esc>')
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
@@ -240,29 +241,29 @@ require('lazy').setup({
   -- Use `opts = {}` to automatically pass options to a plugin's `setup()` function, forcing the plugin to be loaded.
   --
 
-  -- {
-  --   'zbirenbaum/copilot.lua',
-  --   cmd = 'Copilot',
-  --   build = ':Copilot auth',
-  --   event = 'BufReadPost',
-  --   opts = {
-  --     suggestion = {
-  --       enabled = not vim.g.ai_cmp,
-  --       auto_trigger = true,
-  --       hide_during_completion = vim.g.ai_cmp,
-  --       keymap = {
-  --         accept = '<C-Enter>',
-  --         next = '<M-]>',
-  --         prev = '<M-[>',
-  --       },
-  --     },
-  --     panel = { enabled = false },
-  --     filetypes = {
-  --       markdown = true,
-  --       help = true,
-  --     },
-  --   },
-  -- },
+  {
+    'zbirenbaum/copilot.lua',
+    cmd = 'Copilot',
+    build = ':Copilot auth',
+    event = 'BufReadPost',
+    opts = {
+      suggestion = {
+        enabled = not vim.g.ai_cmp,
+        auto_trigger = true,
+        hide_during_completion = vim.g.ai_cmp,
+        keymap = {
+          accept = '<M-CR>',
+          next = '<M-]>',
+          prev = '<M-[>',
+        },
+      },
+      panel = { enabled = false },
+      filetypes = {
+        markdown = true,
+        help = true,
+      },
+    },
+  },
 
   -- Alternatively, use `config = function() ... end` for full control over the configuration.
   -- If you prefer to call `setup` explicitly, use:
