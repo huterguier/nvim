@@ -6,7 +6,7 @@ vim.opt.clipboard = 'unnamedplus'
 vim.opt.winborder = 'rounded'
 
 vim.g.mapleader = ' '
-vim.keymap.set('n', '<leader>o', ':update<CR> :source<CR>')
+vim.keymap.set('n', '<leader>so', ':update<CR> :source<CR>')
 vim.keymap.set('n', '<leader>w', ':write<CR>')
 vim.keymap.set('n', '<leader>q', ':quit<CR>')
 vim.keymap.set('n', '<leader>q', ':quit<CR>')
@@ -25,7 +25,7 @@ vim.keymap.set('n', '<C-l>', '<cmd>TmuxNavigateRight<CR>')
 
 vim.pack.add({'https://github.com/stevearc/oil.nvim'})
 require 'oil'.setup()
-vim.keymap.set('n', '<leader>e', ':Oil<CR> --float')
+vim.keymap.set('n', '<leader>o', ':Oil<CR> --float')
 
 vim.pack.add({'https://github.com/github/copilot.vim',})
 
@@ -38,12 +38,13 @@ vim.pack.add {
 require('mason').setup()
 require('mason-lspconfig').setup()
 require('mason-tool-installer').setup({
-	ensure_installed = { 'lua_ls', 'pyright', }
+	ensure_installed = { 'lua_ls', 'pyright' },
 })
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
 vim.keymap.set('n', 'gr', vim.lsp.buf.references)
 vim.keymap.set('n', 'K', vim.lsp.buf.hover)
 vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename)
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
 
 vim.pack.add({
 		{ src = 'https://github.com/nvim-telescope/telescope.nvim', tag = '0.1.9' },
@@ -57,3 +58,16 @@ vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = 'Telescope help ta
 
 vim.pack.add({'https://github.com/vague2k/vague.nvim'})
 vim.cmd('colorscheme vague')
+
+vim.pack.add({'https://github.com/stevearc/dressing.nvim'})
+require("dressing").setup({
+  input = { start_in_insert = false, insert_only = false, },
+})
+
+vim.pack.add({'https://github.com/stevearc/conform.nvim'})
+require("conform").setup({
+  formatters_by_ft = {
+    python = { "isort", "black" },
+	typescript = { "prettierd" },
+  },
+})
