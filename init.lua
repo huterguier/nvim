@@ -13,10 +13,8 @@ vim.g.mapleader = ' '
 vim.keymap.set('n', '<leader>so', ':update<CR> :source<CR>')
 vim.keymap.set('n', '<leader>w', ':write<CR>')
 vim.keymap.set('n', '<leader>q', ':quit<CR>')
-vim.keymap.set('n', '<leader>q', ':quit<CR>')
 vim.keymap.set('n', '<leader>%', ':vs<CR>')
 vim.keymap.set('n', '<leader>"', ':sp<CR>')
-
 
 vim.keymap.set('i', 'jk', '<Esc>')
 vim.keymap.set('i', 'kj', '<Esc>')
@@ -31,7 +29,12 @@ vim.pack.add({ 'https://github.com/stevearc/oil.nvim' })
 require 'oil'.setup()
 vim.keymap.set('n', '<leader>o', ':Oil<CR> --float')
 
-vim.pack.add({ 'https://github.com/github/copilot.vim', })
+vim.pack.add({ 'git@github.com:github/copilot.vim.git' })
+vim.keymap.set('i', '<M-CR>', 'copilot#Accept("\\<CR>")', {
+	expr = true,
+	replace_keycodes = false
+})
+vim.g.copilot_no_tab_map = true
 
 vim.pack.add {
 	{ src = 'https://github.com/neovim/nvim-lspconfig' },
@@ -65,13 +68,6 @@ vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = 'Telescope find f
 vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = 'Telescope live grep' })
 vim.keymap.set('n', '<leader>sb', builtin.buffers, { desc = 'Telescope buffers' })
 vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = 'Telescope help tags' })
-
--- vim.pack.add({ 'https://github.com/vague2k/vague.nvim' })
--- require('vague').setup({
--- 	bold = false,
--- 	italic = false,
--- })
--- vim.cmd('colorscheme vague')
 
 vim.pack.add({ 'https://github.com/folke/tokyonight.nvim' })
 vim.cmd('colorscheme tokyonight-night')
