@@ -28,7 +28,8 @@ vim.keymap.set("n", "<C-k>", "<cmd>TmuxNavigateUp<CR>")
 vim.keymap.set("n", "<C-l>", "<cmd>TmuxNavigateRight<CR>")
 
 vim.pack.add({ "https://github.com/stevearc/oil.nvim" })
-require("oil").setup()
+-- require("oil").setup()
+require("plugins/oil")
 vim.keymap.set("n", "<leader>o", ":Oil<CR> --float")
 
 vim.pack.add({ "git@github.com:github/copilot.vim.git" })
@@ -49,6 +50,7 @@ require("mason-lspconfig").setup()
 require("mason-tool-installer").setup({
 	ensure_installed = { "lua_ls", "pyright" },
 })
+
 vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 vim.keymap.set("n", "gr", vim.lsp.buf.references)
 vim.keymap.set("n", "K", vim.lsp.buf.hover)
