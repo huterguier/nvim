@@ -1,4 +1,6 @@
--- helper function to parse output
+vim.pack.add({ "https://github.com/stevearc/oil.nvim" })
+vim.keymap.set("n", "<leader>o", ":Oil<CR> --float")
+
 local function parse_output(proc)
 	local result = proc:wait()
 	local ret = {}
@@ -12,7 +14,6 @@ local function parse_output(proc)
 	return ret
 end
 
--- build git status cache
 local function new_git_status()
 	return setmetatable({}, {
 		__index = function(self, key)
@@ -39,7 +40,6 @@ local function new_git_status()
 end
 local git_status = new_git_status()
 
--- Clear git status cache on refresh
 local refresh = require("oil.actions").refresh
 local orig_refresh = refresh.callback
 refresh.callback = function(...)
