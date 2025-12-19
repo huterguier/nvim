@@ -13,16 +13,16 @@ vim.opt.tabstop = 4
 vim.opt.clipboard = "unnamedplus"
 vim.opt.winborder = "rounded"
 vim.api.nvim_create_autocmd("TextYankPost", {
-    callback = function()
-        vim.highlight.on_yank({ timeout = 200 })
-    end,
+	callback = function()
+		vim.highlight.on_yank({ timeout = 200 })
+	end,
 })
 
 vim.keymap.set("n", "<leader>so", ":update<CR> :source<CR>")
 vim.keymap.set("n", "<leader>w", ":write<CR>")
 vim.keymap.set("n", "<leader>q", ":quit<CR>")
 vim.keymap.set("n", "<leader>%", ":vs<CR>")
-vim.keymap.set("n", "<leader>\"", ":sp<CR>")
+vim.keymap.set("n", '<leader>"', ":sp<CR>")
 
 vim.keymap.set("i", "jk", "<Esc>")
 vim.keymap.set("i", "kj", "<Esc>")
@@ -43,3 +43,4 @@ require("huterguier/treesitter")
 require("huterguier/telescope")
 require("huterguier/dressing")
 require("huterguier/conform")
+require("huterguier/teamtype")
