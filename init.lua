@@ -3,7 +3,21 @@ vim.g.mapleader = " "
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 5
-vim.opt.wrap = true
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "latex", "tex", "markdown", "text" },
+    callback = function()
+        vim.opt_local.wrap = true
+        vim.opt_local.breakindent = true
+        vim.opt_local.breakindentopt = "shift:2,min:20"
+        vim.opt_local.linebreak = true
+        -- Optional: makes navigation easier on wrapped lines
+        vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, buffer = true })
+        vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, buffer = true })
+        vim.keymap.set('v', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, buffer = true })
+        vim.keymap.set('v', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, buffer = true })
+    end,
+})
 
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 4
@@ -13,15 +27,10 @@ vim.opt.tabstop = 4
 vim.opt.clipboard = "unnamedplus"
 vim.opt.winborder = "rounded"
 vim.api.nvim_create_autocmd("TextYankPost", {
-	callback = function()
-		vim.highlight.on_yank({ timeout = 200 })
-	end,
+    callback = function()
+        vim.highlight.on_yank({ timeout = 200 })
+    end,
 })
-
-vim.keymap.set("n", "k", "gk", { noremap = true, silent = true })
-vim.keymap.set("n", "j", "gj", { noremap = true, silent = true })
-vim.keymap.set("v", "k", "gk", { noremap = true, silent = true })
-vim.keymap.set("v", "j", "gj", { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>so", ":update<CR> :source<CR>")
 vim.keymap.set("n", "<leader>w", ":write<CR>")
