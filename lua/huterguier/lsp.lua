@@ -14,8 +14,8 @@ vim.lsp.config("texlab", {
 	settings = {
 		texlab = {
 			build = {
-				executable = "tectonic",
-				args = { "-X", "compile", "%f", "--synctex", "--keep-logs", "--keep-intermediates" },
+				executable = "latexmk",
+				args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "%f" },
 				onSave = true,
 			},
 		},
