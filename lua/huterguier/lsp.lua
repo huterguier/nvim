@@ -7,7 +7,19 @@ vim.pack.add({
 require("mason").setup()
 require("mason-lspconfig").setup()
 require("mason-tool-installer").setup({
-	ensure_installed = { "lua_ls", "pyright", "typescript-language-server" },
+	ensure_installed = { "lua_ls", "pyright", "typescript-language-server", "texlab" },
+})
+
+vim.lsp.config("texlab", {
+	settings = {
+		texlab = {
+			build = {
+				executable = "tectonic",
+				args = { "-X", "compile", "%f", "--synctex", "--keep-logs", "--keep-intermediates" },
+				onSave = true,
+			},
+		},
+	},
 })
 
 vim.keymap.set("n", "gd", vim.lsp.buf.definition)
